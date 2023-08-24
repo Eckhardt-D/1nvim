@@ -48,13 +48,14 @@ then
   if which sudo >/dev/null; then
     sudo mv squashfs-root /
     sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+    cd ..
     sudo rm -r neovim
   else
     mv squashfs-root /
     ln -s /squashfs-root/AppRun /usr/bin/nvim
+    cd ..
     rm -r neovim
   fi
-  cd ..
 fi
 
 cd "$CONFIG_OUT_DIR"
