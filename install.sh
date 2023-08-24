@@ -44,10 +44,17 @@ then
   ./nvim.appimage --appimage-extract
   ./squashfs-root/AppRun --version
   echo \n
-  sudo mv squashfs-root /
-  sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+
+  if which sudo >/dev/null; then
+    sudo mv squashfs-root /
+    sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+    sudo rm -r neovim
+  else
+    mv squashfs-root /
+    ln -s /squashfs-root/AppRun /usr/bin/nvim
+    rm -r neovim
+  fi
   cd ..
-  sudo rm -r neovim
 fi
 
 cd "$CONFIG_OUT_DIR"
